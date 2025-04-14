@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK. Masthan Sharif</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f9f9f9, #e0eafc);
+        }
+
+        nav {
+            background-color: #007acc;
+            display: flex;
+            justify-content: center;
+            padding: 1em 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        section {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1,
+        h2 {
+            color: #007acc;
+        }
+
+        img {
+            max-width: 200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #007acc;
+            font-weight: bold;
+        }
+
+        a.cv-link {
+            color: #007acc;
+            font-weight: bold;
+        }
+
+        a.cv-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="#" onclick="showSection('about')">About</a>
+        <a href="#" onclick="showSection('photos')">Photos</a>
+        <a href="#" onclick="showSection('education')">Education</a>
+        <a href="#" onclick="showSection('skills')">Skills</a>
+        <a href="#" onclick="showSection('cv')">CV</a>
+    </nav>
+
+    <div class="container">
+        <section id="about" class="active">
+            <h2>About Me</h2>
+            <p>Hi! I'm currently a B.Tech student at IIIT Hyderabad, pursuing a major in Computer Science and
+                Engineering. I'm deeply passionate about technology, especially in the fields of systems, programming,
+                and artificial intelligence. When I'm not coding or studying, you'll probably find me on the tennis
+                court or diving into a good book. I'm always eager to learn, grow, and contribute meaningfully to the
+                tech community.</p>
+        </section>
+
+        <section id="photos">
+            <h2>Photos</h2>
+            <div class="photo-gallery">
+                <img src="profile-picture.png" alt="Profile Picture">
+                <img src="local1.jpg" alt="My Village Temple">
+                <img src="local2.jpg" alt="River Side Near My Home">
+                <img src="local3.jpg" alt="Festivals in My Place">
+            </div>
+        </section>
+
+
+        <section id="education">
+            <h2>Education</h2>
+            <ul>
+                <li>IIIT Hyderabad - B.Tech in CSE (2025-Present)</li>
+                <li>RGUKT Nuzvid - PUC (2021-2023)</li>
+                <li>SMKZPHS - 9th & 10th (2019-2021)</li>
+                <li>VEDA School - 2nd to 8th (2011-2019)</li>
+                <li>Modern Nursery - Nursery to 1st (2008-2011)</li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li>C - Advanced</li>
+                <li>C++ - Intermediate</li>
+                <li>Python - Intermediate</li>
+                <li>HTML/CSS - Intermediate</li>
+                <li>JavaScript - Beginner</li>
+                <li>Linux (Ubuntu) - Intermediate</li>
+                <li>Git & GitHub - Beginner</li>
+                <li>VSCode - Intermediate</li>
+            </ul>
+        </section>
+
+        <section id="cv">
+            <h2>CV</h2>
+            <p><a class="cv-link" href="cv.pdf" target="_blank">View My CV (PDF)</a></p>
+        </section>
+    </div>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
