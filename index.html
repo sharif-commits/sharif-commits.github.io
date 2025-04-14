@@ -133,7 +133,6 @@
     </nav>
 
     <div class="container">
-        <!-- Existing sections -->
         <section id="about" class="active">
             <h2>About Me</h2>
             <p>Hi! I'm currently a B.Tech student at IIIT Hyderabad, pursuing a major in Computer Science and
@@ -183,18 +182,16 @@
             <p><a class="cv-link" href="cv.pdf" target="_blank">View My CV (PDF)</a></p>
         </section>
 
-        <!-- New Text Analysis Section -->
         <section id="text-analysis">
             <h2>Text Analysis</h2>
             <textarea id="inputText" placeholder="Enter your text here..."></textarea>
             <button onclick="analyzeText()">Analyze Text</button>
-
             <div id="output"></div>
         </section>
     </div>
 
     <script>
-        // Function to show a specific section based on its ID
+        // Show sections
         function showSection(id) {
             document.querySelectorAll('section').forEach(sec => {
                 sec.classList.remove('active');
@@ -202,30 +199,23 @@
             document.getElementById(id).classList.add('active');
         }
 
-        // Text Analysis Function
+        // Text Analysis
         function analyzeText() {
             const text = document.getElementById('inputText').value;
-
-            // Task 1: Calculate and display number of letters, words, spaces, newlines, and special symbols
             const numLetters = text.replace(/[^a-zA-Z]/g, '').length;
             const numWords = text.split(/\s+/).filter(word => word.length > 0).length;
             const numSpaces = (text.match(/\s/g) || []).length;
             const numNewlines = (text.match(/\n/g) || []).length;
             const numSpecialSymbols = text.replace(/[a-zA-Z0-9\s\n]/g, '').length;
 
-            // Task 2: Tokenize the text and count pronouns
             const pronouns = ['I', 'me', 'my', 'you', 'he', 'him', 'his', 'she', 'her', 'hers', 'it', 'its', 'we', 'us', 'our', 'they', 'them', 'their'];
-            const pronounCount = countWordsByGroup(text, pronouns);
-
-            // Task 3: Tokenize the text and count prepositions
             const prepositions = ['in', 'on', 'at', 'by', 'with', 'under', 'over', 'between', 'against', 'during'];
-            const prepositionCount = countWordsByGroup(text, prepositions);
-
-            // Task 4: Tokenize the text and count indefinite articles
             const indefiniteArticles = ['a', 'an'];
+
+            const pronounCount = countWordsByGroup(text, pronouns);
+            const prepositionCount = countWordsByGroup(text, prepositions);
             const articleCount = countWordsByGroup(text, indefiniteArticles);
 
-            // Display the results
             document.getElementById('output').innerHTML = `
                 <h3>Text Analysis Results:</h3>
                 <p><strong>Number of Letters:</strong> ${numLetters}</p>
@@ -245,26 +235,20 @@
             `;
         }
 
-        // Updated helper function to count words in a group (case-insensitive)
         function countWordsByGroup(text, group) {
             const words = text.toLowerCase().split(/\s+/);
             const groupSet = new Set(group.map(word => word.toLowerCase()));
             const groupCount = {};
-
             groupSet.forEach(word => groupCount[word] = 0);
-
             words.forEach(word => {
-                // Strip punctuation from words for clean match
                 const cleaned = word.replace(/[^a-z]/g, '');
                 if (groupCount.hasOwnProperty(cleaned)) {
                     groupCount[cleaned]++;
                 }
             });
-
             return groupCount;
         }
 
-        // Helper function to print word count for each group
         function printCountByGroup(groupCount) {
             let output = '';
             for (const word in groupCount) {
@@ -275,8 +259,21 @@
             return output || '<p>None found.</p>';
         }
 
-    </script>
+        document.addEventListener('click', (event) => {
+            const element = event.target;
+            const tagName = element.tagName.toLowerCase();
+            const timestamp = new Date().toISOString();
+            console.log(`${timestamp} , click , ${tagName}`);
+        });
 
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('section.active').forEach(sec => {
+                const timestamp = new Date().toISOString();
+                const tagName = sec.tagName.toLowerCase();
+                console.log(`${timestamp} , view , ${tagName}`);
+            });
+        });
+    </script>
 </body>
 
 </html>
